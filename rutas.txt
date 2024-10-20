@@ -8,3 +8,21 @@
 /usuarios/coordinadores
     POST[login]: login de usuario si es ok devuelve tokenUsuario, idEspecialidad
     POST: registra un nuevo coordinador
+    GET[tokenUsuario]: devuelve los datos del usuario que coincide con el token
+    GET[todos=true]: devuelve un array con todos los coordinadores
+
+/proyectos
+
+/votos
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+falta implementar
+
+/proyectos
+    GET[idEspecialidad]: devuelve todos los proyectos de una especialidades
+    POST: crea un nuevo proyecto, recibe un token de usuario para validar que sea el coordinador de esa carrera
+/votos
+    POST: crea un nuevo voto. debe recibir idProyecto y tokenUsuario para validar que este habilitado
+    GET[resultados=true]: muestra el conteo de votos, recibe tambien un tokenUsuario para validar que sea admin (evaluar si es necesario, otra opcion: todos pueden ver)
+    
