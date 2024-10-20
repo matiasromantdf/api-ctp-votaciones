@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="g_id_onload"
+     data-client_id="196641321859-4tmsbn858ol5tilj0cgsu8lnddnec0lj.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin" data-type="standard"></div>
+<div id="datos-usuario">
+</div>
+<div class="redirigir">
+    <a href="votar.html">Votar</a>
+</div>
+<div class="hasVotado">
+    <h1>Ya has votado</h1>
+</div>
+
+    
+</body>
+</html>
+<script>
+   function handleCredentialResponse(response) {
+      // El JWT se encuentra en response.credential
+      console.log("Credencial JWT: ", response.credential);
+      
+      // Aquí puedes decodificar el JWT y utilizar la información del usuario.
+      const token = response.credential;
+      localStorage.setItem('token', token);
+      // Enviar el token al backend para verificar o iniciar la sesión
+      fetch('http://localhost/api-ctp-votaciones/votantes/', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({ token: token })
+      })
+      .then(response => response.json())
+      .then(data =>{
+            console.log(data);
+            document.getElementById('datos-usuario').innerHTML = "Bienvenido: "+data.name;
+            if(data.habilitado){
+                document.querySelector('.redirigir').style.display = 'block';
+            }
+            else{
+                document.querySelector('.hasVotado').style.display = 'block';
+            }
+      })
+      .catch(error => console.error('Error:', error));
+   }
+
+</script>
+
+<style>
+    .redirigir{
+        display: none;
+    }
+    #datos-usuario{
+        display: none;
+    }
+    .hasVotado{
+        display: none;
+    }
+    
+</style>
