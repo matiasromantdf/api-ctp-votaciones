@@ -1,0 +1,10 @@
+/votantes
+    POST google: devuelve habilitado, mail, nombre
+
+/especialidades 
+    GET: Obtener todas las especialidades
+    
+
+/usuarios/coordinadores
+    POST[login]: login de usuario si es ok devuelve tokenUsuario, idEspecialidad
+    POST: registra un nuevo coordinador
