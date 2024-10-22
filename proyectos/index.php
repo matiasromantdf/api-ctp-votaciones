@@ -22,6 +22,16 @@ switch ($metodo) {
         $response = array('ok' => $respuesta);
         echo json_encode($response);
         break;
+    case 'GET':
+        if(isset($_GET['idProyecto'])){
+            $proyecto = Proyecto::obtenerPorId($_GET['idProyecto']);
+            echo json_encode($proyecto);
+        }
+        else{
+            $proyectos = Proyecto::obtenerTodos();
+            echo json_encode($proyectos);
+        }
+        break;
     default:
         echo json_encode(array('mensaje' => 'Método no contemplado'));
         break;
