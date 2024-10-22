@@ -30,7 +30,10 @@ switch ($metodo) {
             $coordinador = Coordinador::obtenerPorToken($_GET['tokenUsuario']);
             echo json_encode($coordinador);
         }
-        elseif(isset($_GET['todos'])){
+        // elseif(){
+        //     //
+        // }
+        else{
             $coordinadores = Coordinador::obtenerTodos();
             echo json_encode($coordinadores);
         }

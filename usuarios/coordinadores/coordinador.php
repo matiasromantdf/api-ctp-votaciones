@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../conexion.php';
-require_once '../usuario.php';
+require_once __DIR__ . '/../../conexion.php';
+require_once __DIR__.'/../usuario.php';
 
 class Coordinador extends Usuario{
 

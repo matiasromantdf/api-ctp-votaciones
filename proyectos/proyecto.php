@@ -1,5 +1,7 @@
 <?php
 
+require_once '../usuarios/coordinadores/coordinador.php';
+
 class Proyecto{
     private $idProyecto;
     private $nombre;
@@ -25,22 +27,26 @@ class Proyecto{
                 $stmt->execute([$this->nombre, $this->descripcion, $this->idEspecialidad]);
                 $idProyecto = $pdo->lastInsertId();
                 //cargar fotos en la carpeta fotos_proyectos
-                $ruta = "../../fotos_proyectos/";
-                $fotos = $this->fotos;
-                $fotosProyecto = [];
-                $i = 0;
-                foreach($fotos as $foto){
-                    $i++;
-                    $nombreFoto = $idProyecto . "_" . $i . ".jpg";
-                    $rutaFoto = $ruta . $nombreFoto;
-                    move_uploaded_file($foto['tmp_name'], $rutaFoto);
-                    $fotosProyecto[] = $nombreFoto;
+                if(!file_exists('../fotos_proyectos')){
+                    mkdir('../fotos_proyectos/', 0777, true);
                 }
+                $ruta = '../fotos_proyectos/' . $idProyecto . '/';
+                if(!file_exists($ruta)){
+                    mkdir($ruta, 0777, true);
+                }
+                $fotos = $this->fotos;
+                $i = 0;
                 //insertar fotos en la base de datos
-                foreach($fotosProyecto as $foto){
-                    $sql = "INSERT INTO fotos_proyectos (nombre, proyecto_id) VALUES (?, ?)";
+                for($i = 0; $i < count($fotos['name']); $i++){
+                    //crear un nombre único para la foto
+                    $nombreFoto = uniqid() . '.' . pathinfo($fotos['name'][$i], PATHINFO_EXTENSION);
+                    $rutaFoto = $ruta . $nombreFoto;
+                    move_uploaded_file($fotos['tmp_name'][$i], $rutaFoto);
+                    $sql = "INSERT INTO imagenes (idProyecto,url) VALUES (?, ?)";
                     $stmt = $pdo->prepare($sql);
-                    $stmt->execute([$foto, $idProyecto]);
+                    $stmt->execute([$idProyecto, '/fotos_proyectos/'.$idProyecto.'/'. $nombreFoto]);
+
+                    
                 }
 
                 

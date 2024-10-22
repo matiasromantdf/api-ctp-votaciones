@@ -1,6 +1,6 @@
 <?php
 
-require_once '../conexion.php';
+require_once __DIR__.'../conexion.php';
 
 class Especialidad{
     private $idEspecialidad;
