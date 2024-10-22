@@ -78,5 +78,20 @@ class Proyecto{
         return $proyectos;
     }
 
+    public static function obtenerPorId($id){
+        $conexion = new Conexion();
+        $pdo = $conexion->getConexion();
+        $sql = "SELECT * FROM proyectos WHERE idProyecto = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+        $proyecto = $stmt->fetch();
+        $sql = "SELECT * FROM imagenes WHERE idProyecto = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$proyecto['idProyecto']]);
+        $fotos = $stmt->fetchAll();
+        $proyecto['fotos'] = $fotos;
+        return $proyecto;
+    }
+
 
 }
