@@ -16,8 +16,6 @@ switch ($metodo) {
         $datos['descripcion'] = $_POST['descripcion'];
         $datos['idEspecialidad'] = $_POST['idEspecialidad'];
         $datos['tokenUsuario'] = $_POST['tokenUsuario'];
-        $fotos=[];
-
         $fotos = $_FILES['fotos'];
         $proyecto = new Proyecto($datos['nombre'], $datos['descripcion'], $datos['idEspecialidad'], $fotos);
         $respuesta = $proyecto->registrar($datos['tokenUsuario']);
