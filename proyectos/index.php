@@ -27,6 +27,10 @@ switch ($metodo) {
             $proyecto = Proyecto::obtenerPorId($_GET['idProyecto']);
             echo json_encode($proyecto);
         }
+        elseif(isset($_GET['idEspecialidad'])){
+            $proyectos = Proyecto::obtenerPorEspecialidad($_GET['idEspecialidad']);
+            echo json_encode($proyectos);
+        }
         else{
             $proyectos = Proyecto::obtenerTodos();
             echo json_encode($proyectos);

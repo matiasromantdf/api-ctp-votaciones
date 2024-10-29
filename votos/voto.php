@@ -5,8 +5,7 @@ class Voto{
     private $idVotante;
     private $idProyecto;
 
-    public function __construct($id, $idVotante, $idProyecto){
-        $this->id = $id;
+    public function __construct($idVotante, $idProyecto){
         $this->idVotante = $idVotante;
         $this->idProyecto = $idProyecto;
     }
@@ -14,4 +13,13 @@ class Voto{
     public static function obtenerVotos(){
         
     }
+    public function registrar(){
+        $conexion = new Conexion();
+        $pdo = $conexion->getConexion();
+        $sql = "INSERT INTO votos (idVotante, idProyecto) VALUES (?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$this->idVotante, $this->idProyecto]);
+        
+    }
+
 }

@@ -13,7 +13,7 @@
 
 /proyectos
     POST: crea un nuevo proyecto, recibe un token de usuario para validar que sea el coordinador de esa carrera
-
+    GET[idEspecialidad]: devuelve todos los proyectos de una especialidad
 
 /votos
 
@@ -21,8 +21,7 @@
 
 falta implementar
 
-/proyectos
-    GET[idEspecialidad]: devuelve todos los proyectos de una especialidades
+
 /votos
     POST: crea un nuevo voto. debe recibir idProyecto y tokenUsuario para validar que este habilitado
     GET[resultados=true]: muestra el conteo de votos, recibe tambien un tokenUsuario para validar que sea admin (evaluar si es necesario, otra opcion: todos pueden ver)

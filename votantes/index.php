@@ -26,34 +26,33 @@ switch ($metodo) {
 }
 
 function validarVotante(){
-    // Tu client ID de Google
-$CLIENT_ID = '196641321859-4tmsbn858ol5tilj0cgsu8lnddnec0lj.apps.googleusercontent.com';
+    $CLIENT_ID = '196641321859-4tmsbn858ol5tilj0cgsu8lnddnec0lj.apps.googleusercontent.com';
 
-// Token JWT recibido del frontend (enviado mediante fetch)
-$data = json_decode(file_get_contents('php://input'), true);
-$token = $data['token'];
+    // Token JWT recibido del frontend (enviado mediante fetch)
+    $data = json_decode(file_get_contents('php://input'), true);
+    $token = $data['token'];
 
-// Crear un cliente OAuth2
-$client = new Google_Client(['client_id' => $CLIENT_ID]);  // Especifica tu client ID
-$payload = $client->verifyIdToken($token);
+    // Crear un cliente OAuth2
+    $client = new Google_Client(['client_id' => $CLIENT_ID]);  // Especifica tu client ID
+    $payload = $client->verifyIdToken($token);
 
-if ($payload) {
-    // El token es válido
-    $email = $payload['email'];  // Obtén el correo electrónico del payload
-    $name = $payload['name'];    // Obtén el nombre del usuario si lo necesitas
-    $votante = new Votante($email, $name);
-    $habilitado = $votante->estaHabilitado();
+    if ($payload) {
+        // El token es válido
+        $email = $payload['email'];  // Obtén el correo electrónico del payload
+        $name = $payload['name'];    // Obtén el nombre del usuario si lo necesitas
+        $votante = new Votante($email, $name);
+        $habilitado = $votante->estaHabilitado();
 
-    $respuesta = array(
-        'habilitado' => $habilitado,
-        'email' => $email,
-        'name' => $name
-    );
+        $respuesta = array(
+            'habilitado' => $habilitado,
+            'email' => $email,
+            'name' => $name
+        );
 
-    echo json_encode($respuesta);
-} else {
-    // El token no es válido
-    echo "Token inválido";
-}
+        echo json_encode($respuesta);
+    } else {
+        // El token no es válido
+        echo "Token inválido";
+    }
 
 }

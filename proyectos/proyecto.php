@@ -93,5 +93,22 @@ class Proyecto{
         return $proyecto;
     }
 
+    public static function obtenerPorEspecialidad($idEsp){
+        $conexion = new Conexion();
+        $pdo = $conexion->getConexion();
+        $sql = "SELECT * FROM proyectos WHERE idEspecialidad = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idEsp]);
+        $proyectos = $stmt->fetchAll();
+        foreach($proyectos as $key => $proyecto){
+            $sql = "SELECT * FROM imagenes WHERE idProyecto = ?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$proyecto['idProyecto']]);
+            $fotos = $stmt->fetchAll();
+            $proyectos[$key]['fotos'] = $fotos;
+        }
+        return $proyectos;
+    }
+
 
 }
