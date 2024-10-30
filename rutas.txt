@@ -16,13 +16,12 @@
     GET[idEspecialidad]: devuelve todos los proyectos de una especialidad
 
 /votos
+    POST: crea un nuevo voto. debe recibir idProyecto y tokenUsuario para validar que este habilitado
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 falta implementar
 
-pueba 
 /votos
-    POST: crea un nuevo voto. debe recibir idProyecto y tokenUsuario para validar que este habilitado
     GET[resultados=true]: muestra el conteo de votos, recibe tambien un tokenUsuario para validar que sea admin (evaluar si es necesario, otra opcion: todos pueden ver)
     

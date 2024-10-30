@@ -18,7 +18,7 @@ switch ($metodo) {
         $datos=json_decode(file_get_contents('php://input'),true);
         $token= $datos['tokenUsuario'];
         $idProyecto= $datos['idProyecto'];
-        $votante = Votante::obtenerPorToken($token);
+        $votante = Votante::obtenerPorGoogleToken($token);
         if($votante){
             if($votante->estaHabilitado()){
                 $voto = new Voto($votante->getId(), $idProyecto);

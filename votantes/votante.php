@@ -59,7 +59,7 @@ class Votante{
         }
     }
 
-    public static function obtenerPorToken($token){
+    public static function obtenerPorGoogleToken($token){
                     // Tu client ID de Google
         $CLIENT_ID = '196641321859-4tmsbn858ol5tilj0cgsu8lnddnec0lj.apps.googleusercontent.com';
 
