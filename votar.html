@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div id="boton1">
+                <div id="boton1" onclick="votar(1)">
                     eleccion 1
                 </div>
             </div>
@@ -59,6 +59,24 @@
       })
       .catch(error => console.error('Error:', error));
     }
+    function votar(idProy){
+        const token = localStorage.getItem('token');
+        fetch('http://localhost/api-ctp-votaciones/votos/', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({ tokenUsuario: token, idProyecto: idProy })
+      })
+      .then(response => response.json())
+      .then(data =>{
+            console.log(data);
+           
+      })
+      .catch(error => console.error('Error:', error));
+    }
+
+
 </script>
 
 <style>

@@ -8,7 +8,7 @@ header("Access-Control-Allow-Methods: *");
 require_once '../vendor/autoload.php';
 require_once '../votos/voto.php';
 require_once '../conexion.php';
-require_once 'votante.php';
+require_once '../votantes/votante.php';
 
 
 $metodo = $_SERVER['REQUEST_METHOD'];
