@@ -20,7 +20,7 @@
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-falta implementar
+no se que poner
 
 /votos
     GET[resultados=true]: muestra el conteo de votos, recibe tambien un tokenUsuario para validar que sea admin (evaluar si es necesario, otra opcion: todos pueden ver)
