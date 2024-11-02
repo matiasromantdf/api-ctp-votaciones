@@ -7,6 +7,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+
+/** NOMBRE DE LA BASE DE DATOS = 'ctp_votaciones'    **/
+
 CREATE TABLE IF NOT EXISTS `administradores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` varchar(255) DEFAULT NULL,

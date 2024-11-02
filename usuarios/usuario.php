@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../conexion.php';
 
 class Usuario{
     protected $username;
@@ -80,7 +81,9 @@ class Usuario{
         }else{
             return false;
         }
+        return $usuario;
                
+
        
     }
 
