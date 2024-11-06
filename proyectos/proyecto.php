@@ -34,6 +34,7 @@ class Proyecto{
                 if(!file_exists($ruta)){
                     mkdir($ruta, 0777, true);
                 }
+
                 $fotos = $this->fotos;
                 $i = 0;
                 //insertar fotos en la base de datos
@@ -47,9 +48,7 @@ class Proyecto{
                     $stmt->execute([$idProyecto, '/fotos_proyectos/'.$idProyecto.'/'. $nombreFoto]);
 
                     
-                }
-
-                
+                }                
                 return true;
             }
             else{
